@@ -5,6 +5,10 @@ import os
 import streamlit as st
 import re
 
+# Set your OpenAI API key directly
+openai_api_key = "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"
+
+
 def extract_demographics(summary_text):
     # Extracting Patient Demographics using regular expressions
     patient_demographics = re.search(r'Patient Demographics: (.+?)\n', summary_text)
