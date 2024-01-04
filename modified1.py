@@ -37,7 +37,7 @@ def main():
     st.title("Chat with us 📈")
 
     # Set the path to your specific file
-    specific_file_path = r"C:\Users\srula\Downloads\patientdata.csv"
+    specific_file_path = os.path.join(os.path.dirname(__file__), "patientdata.csv")
 
     # Check if the file exists
     if not os.path.isfile(specific_file_path):
