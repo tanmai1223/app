@@ -1,7 +1,9 @@
---upgrade pip
+
 langchain_experimental
-streamlit
-python-dotenv
-tabulate
+sstreamlit==1.17.0
+python-dotenv==0.19.1
 openai
+
+tabulate==0.8.11
+
 
