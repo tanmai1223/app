@@ -6,6 +6,7 @@ import streamlit as st
 import pandas as pd
 import requests
 from io import StringIO
+import tempfile
 
 def main():
     load_dotenv()
@@ -31,6 +32,11 @@ def main():
             # Read CSV data into a Pandas DataFrame
             df = pd.read_csv(StringIO(response.text))
             st.write(df)  # Display the DataFrame using Streamlit
+            
+            # Save the DataFrame to a temporary CSV file
+            with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.csv') as temp_file:
+                temp_file_path = temp_file.name
+                df.to_csv(temp_file_path, index=False)
         else:
             st.error("Failed to fetch the file. Please check the URL.")
             st.stop()
@@ -38,8 +44,8 @@ def main():
         st.error(f"Error: {e}")
         st.stop()
 
-    # Create agent from CSV data
-    agent = create_csv_agent(OpenAI(temperature=0), df, verbose=True)
+    # Create agent from the temporary CSV file
+    agent = create_csv_agent(OpenAI(temperature=0), temp_file_path, verbose=True)
 
     st.subheader("Ask a question about your CSV")
     user_question = st.text_input("Type your question here: ")
