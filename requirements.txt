@@ -1,5 +1,7 @@
+--upgrade pip
 langchain_experimental
 streamlit
 python-dotenv
-openai
 tabulate
+openai
+
