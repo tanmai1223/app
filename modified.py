@@ -22,7 +22,7 @@ def main():
     st.title("Chat with us 📈")
 
     # Raw URL of the CSV file in your GitHub repository
-    github_raw_csv_url = "patientdata.csv"
+    github_raw_csv_url = "https://raw.githubusercontent.com/tanmai1223/app/main/patientdata.csv"
 
     # Fetch the CSV data from GitHub
     try:
