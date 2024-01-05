@@ -8,12 +8,14 @@ def main():
     load_dotenv()
 
     # Load the OpenAI API key from the environment variable
-    if os.getenv("OPENAI_API_KEY") is None or os.getenv("OPENAI_API_KEY") == "":
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    
+    if openai_api_key is None or openai_api_key == "":
         st.error("OPENAI_API_KEY is not set")
         st.stop()
     else:
         st.success("OPENAI_API_KEY is set")
-
+    
     st.title("Chat with us 📈")
 
     # Set the path to your specific file
