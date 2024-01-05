@@ -2,3 +2,4 @@ langchain_experimental
 streamlit==1.17.0
 python-dotenv==0.19.1
 openai
+tabulate
