@@ -46,7 +46,7 @@ def main():
     # Create agent from the temporary CSV file
     agent = create_csv_agent(OpenAI(temperature=0), temp_file_path, verbose=True)
 
-    st.subheader("Type in your query")
+    st.subheader("Get quick insights about your data")
     user_question = st.text_input("Type your question here: ")
 
     if user_question.strip() == "":
