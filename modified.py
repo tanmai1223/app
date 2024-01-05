@@ -20,7 +20,7 @@ def main():
     else:
         st.success("OPENAI_API_KEY is set")
     
-    st.title("Chat with us 📈")
+    st.title("Welcome to Quick Chat!")
 
     # Raw URL of the CSV file in your GitHub repository
     github_raw_csv_url = "https://raw.githubusercontent.com/tanmai1223/app/main/patientdata.csv"
@@ -46,7 +46,7 @@ def main():
     # Create agent from the temporary CSV file
     agent = create_csv_agent(OpenAI(temperature=0), temp_file_path, verbose=True)
 
-    st.subheader("Ask a question about your CSV")
+    st.subheader("Type in your query")
     user_question = st.text_input("Type your question here: ")
 
     if user_question.strip() == "":
