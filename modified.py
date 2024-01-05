@@ -3,6 +3,9 @@ from langchain.llms import OpenAI
 from dotenv import load_dotenv
 import os
 import streamlit as st
+import pandas as pd
+import requests
+from io import StringIO
 
 def main():
     load_dotenv()
@@ -18,16 +21,25 @@ def main():
     
     st.title("Chat with us 📈")
 
-    # Set the path to your specific file
-    specific_file_path =  r"C:\Users\srula\OneDrive\Desktop\Medical Claims summarization using GenAI\patientdata.csv"
+    # Raw URL of the CSV file in your GitHub repository
+    github_raw_csv_url = "https://raw.githubusercontent.com/username/repository/branch/path/to/your/file.csv"
 
-    # Check if the file exists
-    if not os.path.isfile(specific_file_path):
-        st.error("The specified file does not exist.")
+    # Fetch the CSV data from GitHub
+    try:
+        response = requests.get(github_raw_csv_url)
+        if response.status_code == 200:
+            # Read CSV data into a Pandas DataFrame
+            df = pd.read_csv(StringIO(response.text))
+            st.write(df)  # Display the DataFrame using Streamlit
+        else:
+            st.error("Failed to fetch the file. Please check the URL.")
+            st.stop()
+    except Exception as e:
+        st.error(f"Error: {e}")
         st.stop()
 
-    with open(specific_file_path, 'rb') as file:
-        agent = create_csv_agent(OpenAI(temperature=0), file, verbose=True)
+    # Create agent from CSV data
+    agent = create_csv_agent(OpenAI(temperature=0), df, verbose=True)
 
     st.subheader("Ask a question about your CSV")
     user_question = st.text_input("Type your question here: ")
