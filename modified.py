@@ -31,7 +31,6 @@ def main():
         if response.status_code == 200:
             # Read CSV data into a Pandas DataFrame
             df = pd.read_csv(StringIO(response.text))
-            st.write(df)  # Display the DataFrame using Streamlit
             
             # Save the DataFrame to a temporary CSV file
             with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.csv') as temp_file:
