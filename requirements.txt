@@ -1,5 +1,5 @@
 langchain_experimental
-streamlit==latest
+streamlit
 python-dotenv==0.19.1
 openai
 tabulate
